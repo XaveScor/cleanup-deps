@@ -1,0 +1,21 @@
+{
+  "name": "cleanup-deps",
+  "version": "1.0.5",
+  "description": "",
+  "bin": {
+    "cleanup-deps": "./cli.js"
+  },
+  "main": "run.js",
+  "keywords": [],
+  "author": "XaveScor",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "semver": "^7.5.4",
+    "yargs": "^17.7.2",
+    "zod": "^3.22.4"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

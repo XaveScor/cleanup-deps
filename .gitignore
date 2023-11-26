@@ -1,0 +1,6 @@
+dist/*
+!dist/cli.js
+!dist/package.json
+!dist/.npmignore
+.idea
+node_modules
