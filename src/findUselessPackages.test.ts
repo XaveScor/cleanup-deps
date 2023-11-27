@@ -2,18 +2,42 @@ import { describe, expect, test } from "vitest";
 import { findUselessPackages } from "./findUselessPackages.js";
 
 describe("findUselessPackages", () => {
-  test("have useless deps only", () => {
+  test("have useless deps only with node@lts", () => {
     const uselessPackages = findUselessPackages({
       dependencies: new Set([
         "object-assign",
         "object.assign",
         "es6-object-assign",
+        "lodash.isarray",
+        "lodash.dropright",
+        "lodash.join",
+        "lodash.reverse",
+        "lodash.lastindexof",
+        "lodash._slice",
+        "lodash.slice",
+        "lodash.without",
+        "lodash.indexof",
+        "lodash.fill",
       ]),
-      nodeVersion: "6.0.0",
+      nodeVersion: "20.99.0",
     });
 
     expect(uselessPackages).toEqual(
-      new Set(["object-assign", "object.assign", "es6-object-assign"]),
+      new Set([
+        "object-assign",
+        "object.assign",
+        "es6-object-assign",
+        "lodash.isarray",
+        "lodash.dropright",
+        "lodash.join",
+        "lodash.reverse",
+        "lodash.lastindexof",
+        "lodash._slice",
+        "lodash.slice",
+        "lodash.without",
+        "lodash.indexof",
+        "lodash.fill",
+      ]),
     );
   });
 
