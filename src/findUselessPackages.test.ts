@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { findUselessPackages } from "./findUselessPackages.js";
 
 describe("findUselessPackages", () => {
-  test("have useless deps only", () => {
+  test("have useless deps only with node@lts", () => {
     const uselessPackages = findUselessPackages({
       dependencies: new Set([
         "object-assign",
@@ -19,7 +19,7 @@ describe("findUselessPackages", () => {
         "lodash.indexof",
         "lodash.fill",
       ]),
-      nodeVersion: "6.0.0",
+      nodeVersion: "20.99.0",
     });
 
     expect(uselessPackages).toEqual(

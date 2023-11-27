@@ -32,81 +32,81 @@ export const deps = new Map<string, Dep>([
   [
     "lodash.isarray",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.isArray",
-      message: "Use native Array.isArray"
+      message: "Array.isArray(el)"
     },
   ],
   [
     "lodash.concat",
     {
-      minimalNodeVersion: "6.5.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.concat",
-      message: "Use native Array.prototype.concat"
+      message: "array.concat(...arrays)"
     },
   ],
   [
     "lodash.dropright",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.slice",
-      message: "Use native Array.prototype.slice(0, -1)",
+      message: "array.slice(0, -n)",
     },
   ],
   [
     "lodash.join",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.join",
-      message: "Use native Array.prototype.join",
+      message: "array.join(separator)",
     },
   ],
   [
     "lodash.lastindexof",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.lastIndexOf",
-      message: "Use native Array.prototype.lastIndexOf",
+      message: "array.lastIndexOf(value)",
     },
   ],
   [
     "lodash.reverse",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.reverse",
-      message: "Use native Array.prototype.reverse",
+      message: "array.reverse()",
     },
   ],
   [
     "lodash._slice",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.slice",
-      message: "Use native Array.prototype.slice",
+      message: "array.slice(start, end)",
     },
   ],
   [
     "lodash.slice",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.slice",
-      message: "Use native Array.prototype.slice",
+      message: "array.slice(start, end)",
     },
   ],
   [
     "lodash.without",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.filter",
-      message: "Use native Array.prototype.filter",
+      message: "array.filter(el => !values.includes(el))",
     },
   ],
   [
     "lodash.indexof",
     {
-      minimalNodeVersion: "4.0.0",
+      minimalNodeVersion: "0.10.0",
       nativeApi: "Array.prototype.indexOf",
-      message: "Use native Array.prototype.indexOf",
+      message: "array.indexOf(value)",
     },
   ],
   [
@@ -114,7 +114,7 @@ export const deps = new Map<string, Dep>([
     {
       minimalNodeVersion: "4.0.0",
       nativeApi: "Array.prototype.fill",
-      message: "Use native Array.prototype.fill",
+      message: "array.fill(value, start, end)",
     },
   ],
 ]);
