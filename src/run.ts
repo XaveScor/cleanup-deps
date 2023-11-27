@@ -3,8 +3,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parsePackageJson } from "./parsePackageJson.js";
 import { findUselessPackages } from "./findUselessPackages.js";
-import { deps } from "./deps.js";
 import { minVersion } from "semver";
+import { deps } from "./dependecies";
 
 const argv = yargs(process.argv.slice(2))
   .options({
