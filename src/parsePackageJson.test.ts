@@ -90,7 +90,7 @@ describe("parsePackageJson", () => {
     });
   });
 
-  test.only("package.json should not skip semver with ^", () => {
+  test("package.json should not skip semver with ^", () => {
     const packageJson = `{
       "dependencies": {
         "object-assign": "^4.0.0"

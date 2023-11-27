@@ -8,12 +8,36 @@ describe("findUselessPackages", () => {
         "object-assign",
         "object.assign",
         "es6-object-assign",
+        "lodash.isarray",
+        "lodash.dropright",
+        "lodash.join",
+        "lodash.reverse",
+        "lodash.lastindexof",
+        "lodash._slice",
+        "lodash.slice",
+        "lodash.without",
+        "lodash.indexof",
+        "lodash.fill",
       ]),
       nodeVersion: "6.0.0",
     });
 
     expect(uselessPackages).toEqual(
-      new Set(["object-assign", "object.assign", "es6-object-assign"]),
+      new Set([
+        "object-assign",
+        "object.assign",
+        "es6-object-assign",
+        "lodash.isarray",
+        "lodash.dropright",
+        "lodash.join",
+        "lodash.reverse",
+        "lodash.lastindexof",
+        "lodash._slice",
+        "lodash.slice",
+        "lodash.without",
+        "lodash.indexof",
+        "lodash.fill",
+      ]),
     );
   });
 
