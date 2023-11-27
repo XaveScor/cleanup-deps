@@ -1,5 +1,5 @@
-import { deps } from "./deps.js";
 import { gte, SemVer } from "semver";
+import { deps } from "./dependecies";
 
 type FindUselessPackages = {
   nodeVersion: SemVer | string;

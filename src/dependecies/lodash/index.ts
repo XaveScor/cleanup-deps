@@ -1,34 +1,6 @@
-type Dep = {
-  minimalNodeVersion: string;
-  message: string;
-  nativeApi: string;
-};
+import {Dependency} from "../../shared/types";
 
-export const deps = new Map<string, Dep>([
-  [
-    "object-assign",
-    {
-      minimalNodeVersion: "4.0.0",
-      nativeApi: "Object.assign",
-      message: "Use native Object.assign",
-    },
-  ],
-  [
-    "object.assign",
-    {
-      minimalNodeVersion: "4.0.0",
-      nativeApi: "Object.assign",
-      message: "Use native Object.assign",
-    },
-  ],
-  [
-    "es6-object-assign",
-    {
-      minimalNodeVersion: "4.0.0",
-      nativeApi: "Object.assign",
-      message: "Use native Object.assign",
-    },
-  ],
+export const lodashDeps = new Map<string, Dependency>([
   [
     "lodash.compact",
     {
@@ -254,4 +226,212 @@ export const deps = new Map<string, Dep>([
       message: "array.filter(el => !values.includes(el))",
     },
   ],
-]);
+  [
+    "lodash.uniq",
+    {
+      minimalNodeVersion: "0.12.0",
+      nativeApi: "Set",
+      message: "const uniq = [...new Set([1, 1, 2])]",
+    },
+  ],
+  [
+    "lodash.bind",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Function.prototype.bind",
+      message: "yourFunction.bind(scope)"
+    }
+  ],
+  [
+    "lodash.isfunction",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "typeof",
+      message: "typeof yourFunction === 'function'"
+    }
+  ],
+  [
+    "lodash.castarray",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Array.isArray & array",
+      message: "Array.isArray(arr) ? arr : [arr]"
+    }
+  ],
+  [
+    "lodash.gt",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "'Greater than' operator",
+      message: "Use native 'Greater than' (>) operator"
+    }
+  ],
+  [
+    "lodash.gte",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "'Greater than or equal' operator",
+      message: "Use native 'Greater than or equal' (>=) operator"
+    }
+  ],
+  [
+    "lodash.isfinite",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Number.isFinite",
+      message: "Number.isFinite(num)"
+    }
+  ],
+  [
+    "lodash.isinteger",
+    {
+      minimalNodeVersion: "0.12.0",
+      nativeApi: "Number.isInteger",
+      message: "Number.isInteger(num)"
+    }
+  ],
+  [
+    "lodash.isnan",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Number.isNan",
+      message: "Number.isNan(num)"
+    }
+  ],
+  [
+    "lodash.isnil",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Equality operator",
+      message: "someData == null"
+    }
+  ],
+  [
+    "lodash.isnull",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Strict equality operator",
+      message: "someData === null"
+    }
+  ],
+  [
+    "lodash.isundefined",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Strict equality operator",
+      message: "someData === undefined"
+    }
+  ],
+  [
+    "lodash.keys",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "Object.keys",
+      message: "Object.keys({ a: 1, b: 2})"
+    }
+  ],
+  [
+    "lodash.values",
+    {
+      minimalNodeVersion: "7.0.0",
+      nativeApi: "Object.values",
+      message: "Object.values({ a: 1, b: 2})"
+    }
+  ],
+  [
+    "lodash.endswith",
+    {
+      minimalNodeVersion: "4.0.0",
+      nativeApi: "String.prototype.endsWith",
+      message: "'foobar'.endsWith('bar')"
+    }
+  ],
+  [
+    "lodash.padstart",
+    {
+      minimalNodeVersion: "8.0.0",
+      nativeApi: "String.prototype.padStart",
+      message: "'oo'.padStart(3, 'f')"
+    }
+  ],
+  [
+    "lodash.padend",
+    {
+      minimalNodeVersion: "8.0.0",
+      nativeApi: "String.prototype.padEnd",
+      message: "'f'.padEnd(3, 'o')"
+    }
+  ],
+  [
+    "lodash.repeat",
+    {
+      minimalNodeVersion: "4.0.0",
+      nativeApi: "String.prototype.repeat",
+      message: "'foo'.repeat(3)"
+    }
+  ],
+  [
+    "lodash.split",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "String.prototype.split",
+      message: "'foo,bar'.split(',')"
+    }
+  ],
+  [
+    "lodash.startswith",
+    {
+      minimalNodeVersion: "4.0.0",
+      nativeApi: "String.prototype.startsWith",
+      message: "'foobar'.startsWith('foo')"
+    }
+  ],
+  [
+    "lodash.tolower",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "String.prototype.toLowerCase",
+      message: "'FOOBAR'.toLowerCase()"
+    }
+  ],
+  [
+    "lodash.toupper",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "String.prototype.toUpperCase",
+      message: "'foobar'.toUpperCase()"
+    }
+  ],
+  [
+    "lodash.trim",
+    {
+      minimalNodeVersion: "0.10.0",
+      nativeApi: "String.prototype.trim",
+      message: "' foobar '.trim()"
+    }
+  ],
+  [
+    "lodash.trimstart",
+    {
+      minimalNodeVersion: "10.0.0",
+      nativeApi: "String.prototype.trimStart",
+      message: "' foobar '.trimStart()"
+    }
+  ],
+  [
+    "lodash.trimend",
+    {
+      minimalNodeVersion: "10.0.0",
+      nativeApi: "String.prototype.trimend",
+      message: "' foobar '.trimEnd()"
+    }
+  ],
+  [
+    "lodash.times",
+    {
+      minimalNodeVersion: "4.0.0",
+      nativeApi: "Array.from with callback",
+      message: "Array.from({ length: 5 }, (_, x) => x)"
+    }
+  ],
+])

@@ -1,47 +1,17 @@
 import { describe, expect, test } from "vitest";
 import { findUselessPackages } from "./findUselessPackages.js";
+import { deps } from "./dependecies";
 
 describe("findUselessPackages", () => {
   test("have useless deps only with node@lts", () => {
-    const deps = new Set([
-      "object-assign",
-      "object.assign",
-      "es6-object-assign",
-      "lodash.compact",
-      "lodash.isarray",
-      "lodash.concat",
-      "lodash.difference",
-      "lodash.differenceby",
-      "lodash.differencewith",
-      "lodash.drop",
-      "lodash.dropright",
-      "lodash.join",
-      "lodash.reverse",
-      "lodash.lastindexof",
-      "lodash._slice",
-      "lodash.slice",
-      "lodash.without",
-      "lodash.findindex",
-      "lodash.findlastindex",
-      "lodash.head",
-      "lodash.flatten",
-      "lodash.flattendeep",
-      "lodash.flattendepth",
-      "lodash.frompairs",
-      "lodash.indexof",
-      "lodash.fill",
-      "lodash.initial",
-      "lodash.last",
-      "lodash.nth",
-      "lodash.pull",
-      "lodash.pullall",
-    ]);
+    const depsNames = new Set([...deps.keys()])
+
     const uselessPackages = findUselessPackages({
-      dependencies: deps,
+      dependencies: depsNames,
       nodeVersion: "20.99.0",
     });
 
-    expect(uselessPackages).toEqual(deps);
+    expect(uselessPackages).toEqual(depsNames);
   });
 
   test("have mixed deps", () => {
