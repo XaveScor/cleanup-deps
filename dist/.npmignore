@@ -1,1 +1,3 @@
 *.test.js
+run_local.js
+config.mjs

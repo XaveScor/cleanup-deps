@@ -5,6 +5,7 @@
   "bin": {
     "cleanup-deps": "./cli.js"
   },
+  "types": "./types.d.ts",
   "main": "run.js",
   "keywords": ["useless", "dependencies", "deprecated"],
   "author": "XaveScor",

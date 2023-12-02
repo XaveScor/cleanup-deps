@@ -1,25 +1,34 @@
-import { deps } from "./deps.js";
-import { gte, SemVer } from "semver";
+import { SemVer } from "semver";
+import { ValidateFn } from "./config/createValidateFn.js";
 
 type FindUselessPackages = {
-  nodeVersion: SemVer | string;
+  depValidationFn: ValidateFn;
+  nodeVersion: SemVer;
   dependencies: Set<string>;
 };
 
 export function findUselessPackages({
-  nodeVersion,
+  depValidationFn,
   dependencies,
-}: FindUselessPackages): Set<string> {
-  const uselessPackages = new Set<string>();
+  nodeVersion,
+}: FindUselessPackages) {
+  const uselessPackages = new Map<
+    string,
+    {
+      message: string;
+    }
+  >();
 
   for (const dep of dependencies) {
-    const meta = deps.get(dep);
-    if (!meta) {
-      continue;
-    }
+    const res = depValidationFn({
+      name: dep,
+      nodeVersion,
+    });
 
-    if (gte(nodeVersion, meta.minimalNodeVersion)) {
-      uselessPackages.add(dep);
+    if (res.type === "invalid") {
+      uselessPackages.set(dep, {
+        message: res.message,
+      });
     }
   }
 
