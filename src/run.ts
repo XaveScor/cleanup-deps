@@ -1,23 +1,18 @@
-import yargs from "yargs";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, lstatSync } from "node:fs";
 import { join } from "node:path";
 import { parsePackageJson } from "./parsePackageJson.js";
 import { findUselessPackages } from "./findUselessPackages.js";
-import { deps } from "./deps.js";
 import { minVersion } from "semver";
+import { getTotalConfig } from "./config/getTotalConfig.js";
 
-const argv = yargs(process.argv.slice(2))
-  .options({
-    path: { type: "string", default: undefined },
-  })
-  .parseSync();
-
-export function run() {
-  let { path } = argv;
-  if (!path) {
-    path = process.cwd();
+export async function run() {
+  const config = await getTotalConfig();
+  let packageJsonPath;
+  if (lstatSync(config.packageJsonPath).isDirectory()) {
+    packageJsonPath = join(config.packageJsonPath, "package.json");
+  } else {
+    packageJsonPath = config.packageJsonPath;
   }
-  const packageJsonPath = join(path, "package.json");
 
   if (!existsSync(packageJsonPath)) {
     console.error(`[ERROR] File ${packageJsonPath} does not exist`);
@@ -47,6 +42,7 @@ export function run() {
   console.log(`Minimal node version: ${minimalNodeVersion}`);
 
   const uselessPackages = findUselessPackages({
+    depValidationFn: config.validateFn,
     nodeVersion: minimalNodeVersion,
     dependencies: parsed.deps,
   });
@@ -57,14 +53,8 @@ export function run() {
   }
 
   console.log("Useless packages:");
-  for (const pkgName of uselessPackages) {
-    const pkg = deps.get(pkgName);
-    if (!pkg) {
-      continue;
-    }
-    console.log(
-      `- ${pkgName}; NativeApi:${pkg.nativeApi}, Message: ${pkg.message}, Minimal node version: ${pkg.minimalNodeVersion}`,
-    );
+  for (const [pkgName, pkgMeta] of uselessPackages) {
+    console.log(`- ${pkgName}; Message: ${pkgMeta.message}`);
   }
   process.exit(1);
 }

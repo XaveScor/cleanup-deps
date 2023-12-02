@@ -2,5 +2,8 @@ dist/*
 !dist/cli.js
 !dist/package.json
 !dist/.npmignore
+!dist/run_local.js
+!dist/types.d.ts
+!dist/config.mjs
 .idea
 node_modules
