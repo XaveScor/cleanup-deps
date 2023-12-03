@@ -4,8 +4,11 @@ import { parsePackageJson } from "./parsePackageJson.js";
 import { findUselessPackages } from "./findUselessPackages.js";
 import { minVersion } from "semver";
 import { getTotalConfig } from "./config/getTotalConfig.js";
+import { showWarningIfPrerelease } from "./showWarningIfPrerelease.js";
 
 export async function run() {
+  await showWarningIfPrerelease();
+
   const config = await getTotalConfig();
   let packageJsonPath;
   if (lstatSync(config.packageJsonPath).isDirectory()) {
