@@ -1,6 +1,6 @@
 import yargs from "yargs";
 import { join } from "node:path";
-import { existsSync } from "node:fs";
+import { existsSync, lstatSync } from "node:fs";
 import { isConfig } from "./createConfig.js";
 import { emptyConfig } from "./emptyConfig.js";
 import { mergeValidateFn } from "./mergeValidateFn.js";
@@ -12,17 +12,21 @@ const configFileNames = [
   ".cleanupdepsconfig.cjs",
   ".cleanupdepsconfig.mjs",
 ];
-async function loadConfig(path: string | undefined) {
+type LoadConfigArgs = {
+  path: string | undefined;
+  cwd: string;
+};
+export async function loadConfig({ path, cwd }: LoadConfigArgs) {
   let dir;
   if (path?.startsWith("/")) {
     dir = path;
   } else {
-    dir = join(process.cwd(), path ?? "");
+    dir = join(cwd, path ?? "");
   }
 
   for (const configFileName of configFileNames) {
     const finalPath = join(dir, configFileName);
-    if (existsSync(finalPath)) {
+    if (existsSync(finalPath) && lstatSync(finalPath).isFile()) {
       try {
         const { default: config } = await import(finalPath);
         if (isConfig(config)) {
@@ -48,7 +52,10 @@ export async function getTotalConfig() {
     })
     .parseSync();
 
-  const config = await loadConfig(argv.config);
+  const config = await loadConfig({
+    path: argv.config,
+    cwd: process.cwd(),
+  });
 
   return {
     packageJsonPath: config.packageJsonPath ?? argv.path ?? process.cwd(),
