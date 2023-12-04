@@ -6,7 +6,7 @@
     "cleanup-deps": "./cli.js"
   },
   "typings": "./typings.d.ts",
-  "main": "run.js",
+  "main": "index.js",
   "keywords": [
     "useless",
     "dependencies",
