@@ -5,7 +5,7 @@
   "bin": {
     "cleanup-deps": "./cli.js"
   },
-  "types": "./types.d.ts",
+  "typings": "./typings.d.ts",
   "main": "run.js",
   "keywords": [
     "useless",

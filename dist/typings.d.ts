@@ -33,3 +33,6 @@ type Dep = {
   validUntil?: Date;
 };
 export function declareValidation(deps: { [name: string]: Dep }): ValidateFn;
+
+export function validDep(obj: { validUntil?: Date }): DepValidationResult;
+export function invalidDep(obj: { message: string }): DepValidationResult;

@@ -3,7 +3,7 @@ dist/*
 !dist/package.json
 !dist/.npmignore
 !dist/run_local.js
-!dist/types.d.ts
+!dist/typings.d.ts
 !dist/config.mjs
 src/package.json
 .idea
