@@ -38,6 +38,7 @@ export default createConfig({
     'yargs': {
       minimalNodeVersion: '0.0.0',
       message: 'test',
+      validUntil: new Date(),
     }
   })
 })
@@ -58,6 +59,7 @@ Arguments:
 - value:
   - `minimalNodeVersion` - minimal node version for which package is deprecated.
   - `message` - message that will be shown if package is deprecated.
+  - `validUntil` `[Optional]` - date until package is valid. If date is expired, package will be marked as deprecated.
 
 ##### `createValidateFn`
 Helper function to create validate function for specific package. Should return `validDep` or `invalidDep`.
@@ -65,6 +67,29 @@ Example of usage you can see in [declareValidation](https://github.com/XaveScor/
 
 ##### `mergeValidateFn`
 Helper function to merge validate functions.
+
+### Tips
+
+#### How to hide specific package from the report
+
+You can use `--config` option to declare config file with `validUntil` for specific package.
+For example:
+```javascript
+// config.cleanup-deps.mjs
+import { createConfig, declareValidation } from './index.js';
+
+export default createConfig({
+  packageJsonPath: '..',
+  validateFn: declareValidation({
+    'object.assign': {
+      minimalNodeVersion: '0.0.0',
+      message: 'test',
+      validUntil: new Date('2030-01-01'),
+    }
+  })
+})
+```
+After '2030-01-01' date, the package `object.assign` will be shown in the report. Before that the package will be undeprecated dep.
 
 ### Limitations
 
